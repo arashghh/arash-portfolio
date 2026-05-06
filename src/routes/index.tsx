@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav } from "@/components/SiteNav";
 import {
   GlassCard,
@@ -84,9 +84,9 @@ function Hero() {
           className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:gap-4"
           style={{ animation: "cinematic-fade 1.6s ease-out 2.6s both" }}
         >
-          <CTA primary>Selected Work</CTA>
-          <CTA>Resume</CTA>
-          <CTA>Contact</CTA>
+          <CTA to="/work" primary>Selected Work</CTA>
+          <CTA to="/about">About</CTA>
+          <CTA to="/contact">Contact</CTA>
         </div>
 
         {/* Mobile floating components — stacked */}
@@ -114,9 +114,18 @@ function Hero() {
   );
 }
 
-function CTA({ children, primary }: { children: React.ReactNode; primary?: boolean }) {
+function CTA({
+  children,
+  primary,
+  to,
+}: {
+  children: React.ReactNode;
+  primary?: boolean;
+  to: "/work" | "/about" | "/contact";
+}) {
   return (
-    <button
+    <Link
+      to={to}
       className="glass-panel group relative inline-flex h-11 items-center justify-center rounded-full px-7 text-xs font-medium uppercase tracking-[0.25em] text-foreground/90"
       style={
         primary
@@ -136,6 +145,6 @@ function CTA({ children, primary }: { children: React.ReactNode; primary?: boole
             "radial-gradient(circle at 50% 120%, color-mix(in oklab, var(--plasma-glow) 50%, transparent) 0%, transparent 60%)",
         }}
       />
-    </button>
+    </Link>
   );
 }
