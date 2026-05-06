@@ -192,3 +192,26 @@
 .noise-overlay {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
 }
+
+/* ── Floating UI cards ─────────────────────────────────── */
+@keyframes float-y {
+  0%, 100% { transform: translate3d(var(--px, 0), calc(var(--py, 0px) + 0px), 0); }
+  50%      { transform: translate3d(var(--px, 0), calc(var(--py, 0px) - 8px), 0); }
+}
+@keyframes card-emerge {
+  0%   { opacity: 0; transform: translateY(20px) scale(0.96); filter: blur(10px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+.floating-card {
+  --px: 0px;
+  --py: 0px;
+  will-change: transform;
+  animation:
+    card-emerge 1.2s cubic-bezier(0.22, 1, 0.36, 1) both,
+    float-y 7s ease-in-out infinite;
+  animation-delay: var(--d, 0ms), 1.2s;
+  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.floating-card:hover {
+  z-index: 40;
+}
