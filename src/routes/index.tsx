@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Particles } from "@/components/Particles";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { SiteNav } from "@/components/SiteNav";
 import {
   GlassCard,
   GradientPill,
@@ -31,43 +31,8 @@ export const Route = createFileRoute("/")({
 
 function Hero() {
   return (
-    <main
-      className="relative h-screen w-screen overflow-hidden"
-      style={{ background: "var(--gradient-void)" }}
-    >
-      {/* Atmosphere */}
-      <div className="noise-overlay pointer-events-none absolute inset-0 z-[1] opacity-[0.05] mix-blend-overlay" />
-      <div
-        className="pointer-events-none absolute left-1/2 top-1/2 z-[2] h-[110vmin] w-[110vmin] -translate-x-1/2 -translate-y-1/2 rounded-full"
-        style={{
-          background:
-            "radial-gradient(circle, color-mix(in oklab, var(--plasma) 14%, transparent) 0%, transparent 60%)",
-          filter: "blur(60px)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-0 z-[3]"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.75) 100%)",
-        }}
-      />
-      <Particles />
-
-      {/* Top bar */}
-      <header
-        className="absolute left-0 right-0 top-0 z-30 flex items-center justify-between px-6 py-6 text-[11px] uppercase tracking-[0.3em] text-muted-foreground sm:px-10"
-        style={{ animation: "cinematic-fade 1s ease-out 1.4s both" }}
-      >
-        <span className="flex items-center gap-2">
-          <span
-            className="h-1.5 w-1.5 rounded-full"
-            style={{ background: "var(--plasma)", boxShadow: "0 0 10px var(--plasma)" }}
-          />
-          AG · Studio
-        </span>
-        <span className="hidden sm:inline">MMXXVI · v2.6</span>
-      </header>
+    <main className="relative z-10 h-screen w-screen overflow-hidden">
+      <SiteNav />
 
       {/* Floating UI components — desktop composition */}
       <div className="pointer-events-none absolute inset-0 z-10 hidden md:block">
@@ -119,9 +84,9 @@ function Hero() {
           className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:gap-4"
           style={{ animation: "cinematic-fade 1.6s ease-out 2.6s both" }}
         >
-          <CTA primary>Selected Work</CTA>
-          <CTA>Resume</CTA>
-          <CTA>Contact</CTA>
+          <CTA to="/work" primary>Selected Work</CTA>
+          <CTA to="/about">About</CTA>
+          <CTA to="/contact">Contact</CTA>
         </div>
 
         {/* Mobile floating components — stacked */}
@@ -149,9 +114,18 @@ function Hero() {
   );
 }
 
-function CTA({ children, primary }: { children: React.ReactNode; primary?: boolean }) {
+function CTA({
+  children,
+  primary,
+  to,
+}: {
+  children: React.ReactNode;
+  primary?: boolean;
+  to: "/work" | "/about" | "/contact";
+}) {
   return (
-    <button
+    <Link
+      to={to}
       className="glass-panel group relative inline-flex h-11 items-center justify-center rounded-full px-7 text-xs font-medium uppercase tracking-[0.25em] text-foreground/90"
       style={
         primary
@@ -171,6 +145,6 @@ function CTA({ children, primary }: { children: React.ReactNode; primary?: boole
             "radial-gradient(circle at 50% 120%, color-mix(in oklab, var(--plasma-glow) 50%, transparent) 0%, transparent 60%)",
         }}
       />
-    </button>
+    </Link>
   );
 }
