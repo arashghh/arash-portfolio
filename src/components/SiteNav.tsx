@@ -1,7 +1,7 @@
 import { Link, useLocation } from "@tanstack/react-router";
 
 const links = [
-  { to: "/", label: "Index" },
+  { to: "/", label: "Home" },
   { to: "/work", label: "Work" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
