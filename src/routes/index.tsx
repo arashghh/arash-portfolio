@@ -144,11 +144,6 @@ function Hero() {
           <CTA to="/contact">{t.cta.contact}</CTA>
         </div>
 
-        {/* Mobile floating components — stacked */}
-        <div className="mt-12 grid w-full max-w-sm grid-cols-1 gap-3 md:hidden">
-          <ChartCard delay={2200} />
-          <ToggleCard delay={2600} />
-        </div>
       </section>
 
       {/* Bottom whisper */}
