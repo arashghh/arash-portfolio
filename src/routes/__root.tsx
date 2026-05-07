@@ -12,8 +12,10 @@ import appCss from "../styles.css?url";
 
 import { Atmosphere } from "@/components/Atmosphere";
 import { SiteNav } from "@/components/SiteNav";
+import { LanguageProvider, useLang } from "@/lib/i18n";
 
 function NotFoundComponent() {
+  const { t } = useLang();
   return (
     <>
       <Atmosphere />
@@ -21,20 +23,20 @@ function NotFoundComponent() {
       <main className="relative z-10 flex min-h-screen items-center justify-center px-6">
         <div className="text-center">
           <p className="mb-4 text-[10px] uppercase tracking-[0.5em] text-muted-foreground">
-            Error · 404
+            {t.notFound.tag}
           </p>
           <h1 className="text-cinematic text-6xl font-extralight tracking-tight text-foreground sm:text-7xl">
-            Signal lost.
+            {t.notFound.title}
           </h1>
           <p className="mx-auto mt-6 max-w-md text-sm font-light text-muted-foreground">
-            The page you're looking for has drifted out of frame.
+            {t.notFound.text}
           </p>
           <div className="mt-10">
             <Link
               to="/"
               className="glass-panel inline-flex h-11 items-center justify-center rounded-full px-7 text-xs font-medium uppercase tracking-[0.25em] text-foreground/90"
             >
-              Return home
+              {t.notFound.cta}
             </Link>
           </div>
         </div>
@@ -46,6 +48,7 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
+  const { t } = useLang();
 
   return (
     <>
@@ -54,13 +57,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
       <main className="relative z-10 flex min-h-screen items-center justify-center px-6">
         <div className="text-center">
           <p className="mb-4 text-[10px] uppercase tracking-[0.5em] text-muted-foreground">
-            Interruption
+            {t.error.tag}
           </p>
           <h1 className="text-cinematic text-5xl font-extralight tracking-tight text-foreground sm:text-6xl">
-            This page didn't load.
+            {t.error.title}
           </h1>
           <p className="mx-auto mt-6 max-w-md text-sm font-light text-muted-foreground">
-            Something went wrong on our end. You can try again or head home.
+            {t.error.text}
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <button
@@ -74,13 +77,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
                   "linear-gradient(135deg, color-mix(in oklab, var(--plasma) 22%, transparent), color-mix(in oklab, var(--plasma) 6%, transparent))",
               }}
             >
-              Try again
+              {t.error.retry}
             </button>
             <Link
               to="/"
               className="glass-panel inline-flex h-11 items-center justify-center rounded-full px-7 text-xs font-medium uppercase tracking-[0.25em] text-foreground/90"
             >
-              Go home
+              {t.error.home}
             </Link>
           </div>
         </div>
@@ -135,8 +138,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Atmosphere />
-      <Outlet />
+      <LanguageProvider>
+        <Atmosphere />
+        <Outlet />
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }

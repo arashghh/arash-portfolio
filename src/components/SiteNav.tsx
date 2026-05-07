@@ -1,14 +1,17 @@
 import { Link, useLocation } from "@tanstack/react-router";
-
-const links = [
-  { to: "/", label: "Home" },
-  { to: "/work", label: "Work" },
-  { to: "/about", label: "About" },
-  { to: "/contact", label: "Contact" },
-] as const;
+import { useLang } from "@/lib/i18n";
 
 export function SiteNav() {
   const { pathname } = useLocation();
+  const { t, lang, setLang } = useLang();
+
+  const links = [
+    { to: "/" as const, label: t.nav.home },
+    { to: "/work" as const, label: t.nav.work },
+    { to: "/about" as const, label: t.nav.about },
+    { to: "/contact" as const, label: t.nav.contact },
+  ];
+
   return (
     <header
       className="absolute left-0 right-0 top-0 z-30 flex items-center justify-between px-6 py-6 text-[11px] uppercase tracking-[0.3em] text-muted-foreground sm:px-10"
@@ -46,7 +49,31 @@ export function SiteNav() {
           );
         })}
       </nav>
-      <span className="hidden sm:inline">MMXXVI</span>
+      <div className="flex items-center gap-1 rounded-full glass-panel p-1 text-[10px] uppercase tracking-[0.25em]">
+        {(["en", "fa"] as const).map((l) => {
+          const active = lang === l;
+          return (
+            <button
+              key={l}
+              onClick={() => setLang(l)}
+              className="rounded-full px-2.5 py-1 transition-colors"
+              style={
+                active
+                  ? {
+                      color: "var(--foreground)",
+                      background:
+                        "linear-gradient(135deg, color-mix(in oklab, var(--plasma) 24%, transparent), color-mix(in oklab, var(--plasma) 6%, transparent))",
+                      boxShadow:
+                        "inset 0 1px 0 color-mix(in oklab, white 16%, transparent), 0 0 18px -6px color-mix(in oklab, var(--plasma) 70%, transparent)",
+                    }
+                  : { color: "color-mix(in oklab, var(--foreground) 55%, transparent)" }
+              }
+            >
+              {l === "en" ? "EN" : "فا"}
+            </button>
+          );
+        })}
+      </div>
     </header>
   );
 }

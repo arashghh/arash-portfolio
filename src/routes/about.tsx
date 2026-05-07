@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/SiteNav";
+import { useLang } from "@/lib/i18n";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -25,20 +26,14 @@ const stack = [
   "Framer Motion", "Tailwind", "CSS Houdini", "Node", "Edge", "Figma",
 ];
 
-const timeline = [
-  { year: "2026", text: "Independent — interfaces for ambitious products." },
-  { year: "2024", text: "Senior Frontend, design-system lead at a fintech." },
-  { year: "2022", text: "Motion engineer for an award-winning agency." },
-  { year: "2020", text: "Started shipping production interfaces." },
-];
-
 function AboutPage() {
+  const { t } = useLang();
   return (
     <PageShell
-      eyebrow="About · the maker"
+      eyebrow={t.about.eyebrow}
       title={
         <>
-          A frontend engineer who treats{" "}
+          {t.about.titleA}{" "}
           <span
             style={{
               background:
@@ -48,23 +43,21 @@ function AboutPage() {
               backgroundClip: "text",
             }}
           >
-            interface as instrument.
+            {t.about.titleB}
           </span>
         </>
       }
-      intro="I build calm, considered software. The kind of product that feels obvious in use and was anything but obvious to make."
+      intro={t.about.intro}
     >
       <div className="grid gap-12 md:grid-cols-2">
         <div className="glass-panel rounded-2xl p-7">
           <p className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground">
-            Practice
+            {t.about.practice}
           </p>
           <p className="mt-4 text-sm font-light leading-relaxed text-foreground/85">
-            I work across product, motion and design systems — translating ambitious
-            ideas into shipping software. My focus is taste, performance and the
-            thousand quiet details that separate a good interface from one people love.
+            {t.about.practiceText}
           </p>
-          <div className="mt-6 flex flex-wrap gap-1.5">
+          <div className="mt-6 flex flex-wrap gap-1.5" dir="ltr">
             {stack.map((s) => (
               <span
                 key={s}
@@ -89,9 +82,9 @@ function AboutPage() {
                 "linear-gradient(180deg, transparent, color-mix(in oklab, var(--plasma) 50%, transparent), transparent)",
             }}
           />
-          {timeline.map((t, i) => (
+          {t.about.timeline.map((item, i) => (
             <li
-              key={t.year}
+              key={item.year}
               className="relative pl-10 pb-8 last:pb-0"
               style={{ animation: `cinematic-fade 1s ease-out ${1.2 + i * 0.15}s both` }}
             >
@@ -103,9 +96,9 @@ function AboutPage() {
                 }}
               />
               <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">
-                {t.year}
+                {item.year}
               </p>
-              <p className="mt-1.5 text-base font-light text-foreground/90">{t.text}</p>
+              <p className="mt-1.5 text-base font-light text-foreground/90">{item.text}</p>
             </li>
           ))}
         </ol>
