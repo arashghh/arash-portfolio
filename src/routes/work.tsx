@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell } from "@/components/SiteNav";
 import { ArrowUpRight } from "lucide-react";
+import { useLang } from "@/lib/i18n";
 
 export const Route = createFileRoute("/work")({
   head: () => ({
@@ -21,44 +22,14 @@ export const Route = createFileRoute("/work")({
   component: WorkPage,
 });
 
-const projects = [
-  {
-    year: "2026",
-    title: "Helix OS",
-    role: "Design system · Motion",
-    blurb: "An OS-grade component system built on plasma-glass primitives and adaptive motion.",
-    tag: "System",
-  },
-  {
-    year: "2025",
-    title: "Northwind Pay",
-    role: "Frontend · Checkout",
-    blurb: "Fintech checkout reimagined — sub-second flows, biometric confirmations, zero rage clicks.",
-    tag: "Product",
-  },
-  {
-    year: "2025",
-    title: "Aether Studio",
-    role: "WebGL · Interaction",
-    blurb: "A volumetric portfolio template for visual artists. Real-time light, custom shaders.",
-    tag: "Creative",
-  },
-  {
-    year: "2024",
-    title: "Lumen Health",
-    role: "Dashboard · Data viz",
-    blurb: "Clinician dashboard with calm typography, dense charts and zero cognitive overload.",
-    tag: "Enterprise",
-  },
-];
-
 function WorkPage() {
+  const { t } = useLang();
   return (
     <PageShell
-      eyebrow="Selected · 2024 — 2026"
+      eyebrow={t.work.eyebrow}
       title={
         <>
-          A small body of{" "}
+          {t.work.titleA}{" "}
           <span
             style={{
               background:
@@ -68,14 +39,14 @@ function WorkPage() {
               backgroundClip: "text",
             }}
           >
-            quiet, exacting work.
+            {t.work.titleB}
           </span>
         </>
       }
-      intro="Each project is engineered to feel inevitable — a calm surface over careful systems."
+      intro={t.work.intro}
     >
       <ul className="divide-y" style={{ borderColor: "color-mix(in oklab, white 6%, transparent)" }}>
-        {projects.map((p) => (
+        {t.work.projects.map((p) => (
           <li key={p.title}>
             <Link
               to="/contact"

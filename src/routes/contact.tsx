@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/SiteNav";
 import { Mail, Github, Linkedin, ArrowUpRight } from "lucide-react";
+import { useLang } from "@/lib/i18n";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -22,23 +23,19 @@ export const Route = createFileRoute("/contact")({
 });
 
 const channels = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: "hello@arashghafouri.dev",
-    href: "mailto:hello@arashghafouri.dev",
-  },
+  { icon: Mail, label: "Email", value: "hello@arashghafouri.dev", href: "mailto:hello@arashghafouri.dev" },
   { icon: Github, label: "GitHub", value: "@arashghafouri", href: "#" },
   { icon: Linkedin, label: "LinkedIn", value: "in/arashghafouri", href: "#" },
 ];
 
 function ContactPage() {
+  const { t } = useLang();
   return (
     <PageShell
-      eyebrow="Contact · open for 2026"
+      eyebrow={t.contact.eyebrow}
       title={
         <>
-          Let's build something{" "}
+          {t.contact.titleA}{" "}
           <span
             style={{
               background:
@@ -48,21 +45,20 @@ function ContactPage() {
               backgroundClip: "text",
             }}
           >
-            quietly remarkable.
+            {t.contact.titleB}
           </span>
         </>
       }
-      intro="Currently accepting two engagements per quarter. Tell me about the product, the team and the deadline — I read everything."
+      intro={t.contact.intro}
     >
       <div className="grid gap-8 md:grid-cols-[1.1fr_1fr]">
-        {/* Form */}
         <form
           className="glass-panel space-y-5 rounded-2xl p-7"
           onSubmit={(e) => e.preventDefault()}
         >
-          <Field label="Your name" placeholder="Ada Lovelace" />
-          <Field label="Email" type="email" placeholder="ada@studio.com" />
-          <Field label="Project" placeholder="A few sentences is plenty." textarea />
+          <Field label={t.contact.name} placeholder={t.contact.namePh} />
+          <Field label={t.contact.email} type="email" placeholder={t.contact.emailPh} />
+          <Field label={t.contact.project} placeholder={t.contact.projectPh} textarea />
           <button
             type="submit"
             className="group relative inline-flex h-11 w-full items-center justify-center gap-2 rounded-full px-7 text-xs font-medium uppercase tracking-[0.25em] text-foreground transition-transform hover:-translate-y-0.5"
@@ -74,12 +70,11 @@ function ContactPage() {
                 "0 10px 30px -10px color-mix(in oklab, var(--plasma) 50%, transparent), inset 0 1px 0 color-mix(in oklab, white 20%, transparent)",
             }}
           >
-            Send transmission
+            {t.contact.send}
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </button>
         </form>
 
-        {/* Channels */}
         <div className="space-y-3">
           {channels.map(({ icon: Icon, label, value, href }) => (
             <a
@@ -101,7 +96,7 @@ function ContactPage() {
                 <div className="text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
                   {label}
                 </div>
-                <div className="mt-0.5 text-sm font-light text-foreground/90">{value}</div>
+                <div className="mt-0.5 text-sm font-light text-foreground/90" dir="ltr">{value}</div>
               </div>
               <ArrowUpRight
                 className="h-4 w-4 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
@@ -111,10 +106,10 @@ function ContactPage() {
           ))}
           <div className="glass-panel rounded-2xl p-5">
             <div className="text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
-              Studio · Berlin
+              {t.contact.studio}
             </div>
             <div className="mt-1.5 text-sm font-light text-foreground/80">
-              52.5200° N, 13.4050° E — replies within 24h on weekdays.
+              {t.contact.studioText}
             </div>
           </div>
         </div>
