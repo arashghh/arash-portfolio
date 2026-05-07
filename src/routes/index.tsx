@@ -2,13 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SiteNav } from "@/components/SiteNav";
 import { LiveCodeStream } from "@/components/LiveCodeStream";
-import {
-  GlassCard,
-  GradientPill,
-  ToggleCard,
-  ChartCard,
-  PaletteCard,
-} from "@/components/FloatingUI";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -77,16 +70,6 @@ function Hero() {
 
       {/* Live code background */}
       <LiveCodeStream />
-
-      {/* Floating UI components — desktop composition */}
-      <div className="pointer-events-none absolute inset-0 z-10 hidden md:block">
-        <GlassCard className="pointer-events-auto absolute left-[6%] top-[18%]" delay={1800} />
-        <ToggleCard className="pointer-events-auto absolute left-[14%] bottom-[10%]" delay={2700} />
-
-        <ChartCard className="pointer-events-auto absolute right-[5%] top-[16%]" delay={2000} />
-        <PaletteCard className="pointer-events-auto absolute right-[10%] bottom-[12%]" delay={2900} />
-        <GradientPill className="pointer-events-auto absolute right-[18%] top-[40%]" delay={2600} />
-      </div>
 
       {/* Language switcher */}
       <div
@@ -161,11 +144,6 @@ function Hero() {
           <CTA to="/contact">{t.cta.contact}</CTA>
         </div>
 
-        {/* Mobile floating components — stacked */}
-        <div className="mt-12 grid w-full max-w-sm grid-cols-1 gap-3 md:hidden">
-          <ChartCard delay={2200} />
-          <ToggleCard delay={2600} />
-        </div>
       </section>
 
       {/* Bottom whisper */}
