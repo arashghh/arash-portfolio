@@ -164,7 +164,6 @@ function Hero() {
         {/* Mobile floating components — stacked */}
         <div className="mt-12 grid w-full max-w-sm grid-cols-1 gap-3 md:hidden">
           <ChartCard delay={2200} />
-          <ProgressCard delay={2400} />
           <ToggleCard delay={2600} />
         </div>
       </section>
