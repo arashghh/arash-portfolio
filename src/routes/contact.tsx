@@ -51,9 +51,9 @@ function ContactPage() {
       }
       intro={t.contact.intro}
     >
-      <div className="grid gap-8 md:grid-cols-[1.1fr_1fr]">
+      <div className="grid gap-6 md:grid-cols-[1.1fr_1fr] md:gap-8">
         <form
-          className="glass-panel space-y-5 rounded-2xl p-7"
+          className="glass-panel space-y-5 rounded-2xl p-5 sm:p-7"
           onSubmit={(e) => e.preventDefault()}
         >
           <Field label={t.contact.name} placeholder={t.contact.namePh} />
@@ -71,7 +71,7 @@ function ContactPage() {
             }}
           >
             {t.contact.send}
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl:-scale-x-100" />
           </button>
         </form>
 
@@ -80,10 +80,10 @@ function ContactPage() {
             <a
               key={label}
               href={href}
-              className="glass-panel group flex items-center gap-4 rounded-2xl p-5 transition-transform hover:-translate-y-0.5"
+              className="glass-panel group flex items-center gap-4 rounded-2xl p-4 transition-transform hover:-translate-y-0.5 sm:p-5"
             >
               <div
-                className="grid h-10 w-10 place-items-center rounded-full"
+                className="grid h-10 w-10 shrink-0 place-items-center rounded-full"
                 style={{
                   background:
                     "linear-gradient(135deg, color-mix(in oklab, var(--plasma) 25%, transparent), transparent)",
@@ -92,23 +92,23 @@ function ContactPage() {
               >
                 <Icon className="h-4 w-4" style={{ color: "var(--plasma-glow)" }} />
               </div>
-              <div className="flex-1">
-                <div className="text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
+              <div className="min-w-0 flex-1">
+                <div className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
                   {label}
                 </div>
-                <div className="mt-0.5 text-sm font-light text-foreground/90" dir="ltr">{value}</div>
+                <div className="latin mt-0.5 truncate text-sm font-light text-foreground/90" dir="ltr">{value}</div>
               </div>
               <ArrowUpRight
-                className="h-4 w-4 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                className="h-4 w-4 shrink-0 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl:-scale-x-100"
                 style={{ color: "var(--plasma)" }}
               />
             </a>
           ))}
-          <div className="glass-panel rounded-2xl p-5">
-            <div className="text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
+          <div className="glass-panel rounded-2xl p-4 sm:p-5">
+            <div className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
               {t.contact.studio}
             </div>
-            <div className="mt-1.5 text-sm font-light text-foreground/80">
+            <div className="mt-1.5 text-pretty text-sm font-light leading-relaxed text-foreground/80">
               {t.contact.studioText}
             </div>
           </div>

@@ -248,20 +248,51 @@
   text-shadow: 0 0 8px var(--plasma);
 }
 
-/* ── Persian / RTL typography ───────────────────────── */
+/* ── Persian / RTL typography (Vazir) ───────────────── */
 @font-face {
-  font-family: "AzarMehr";
-  src: url("https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Light.woff2") format("woff2");
+  font-family: "Vazir";
+  src: url("https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir-Light.woff2") format("woff2");
   font-weight: 200 400; font-style: normal; font-display: swap;
 }
 @font-face {
-  font-family: "AzarMehr";
-  src: url("https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Medium.woff2") format("woff2");
-  font-weight: 500 700; font-style: normal; font-display: swap;
+  font-family: "Vazir";
+  src: url("https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir.woff2") format("woff2");
+  font-weight: 450 550; font-style: normal; font-display: swap;
 }
+@font-face {
+  font-family: "Vazir";
+  src: url("https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir-Medium.woff2") format("woff2");
+  font-weight: 560 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Vazir";
+  src: url("https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir-Bold.woff2") format("woff2");
+  font-weight: 701 900; font-style: normal; font-display: swap;
+}
+
 [dir="rtl"], [lang="fa"] {
-  font-family: "AzarMehr", "Vazirmatn", "Vazir", "Inter", system-ui, sans-serif;
+  font-family: "Vazir", "Inter", system-ui, sans-serif;
   letter-spacing: 0 !important;
+  word-spacing: 0.02em;
 }
-[dir="rtl"] .text-cinematic { letter-spacing: 0; line-height: 1.35; }
-[dir="rtl"] [class*="tracking-["] { letter-spacing: 0.12em; }
+[dir="rtl"] .text-cinematic {
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3 { line-height: 1.45; }
+[dir="rtl"] p { line-height: 1.85; }
+/* Soften the heavy English uppercase tracking on Farsi text so it doesn't smear */
+[dir="rtl"] [class*="tracking-["] { letter-spacing: 0.06em; }
+[dir="rtl"] [class*="uppercase"] { text-transform: none; }
+/* Numerals + latin tokens inside Farsi keep Inter for crisp rendering */
+[dir="rtl"] .latin, [dir="rtl"] [data-latin] {
+  font-family: "Inter", system-ui, sans-serif;
+  letter-spacing: 0.04em;
+}
+
+/* Lock the header chrome to LTR so the language switcher never jumps */
+.nav-chrome { direction: ltr; }
+
+/* Prevent any horizontal overflow regardless of language */
+html, body { overflow-x: hidden; }
+img, svg, video { max-width: 100%; }
