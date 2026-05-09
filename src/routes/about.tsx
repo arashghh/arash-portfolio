@@ -49,19 +49,19 @@ function AboutPage() {
       }
       intro={t.about.intro}
     >
-      <div className="grid gap-12 md:grid-cols-2">
-        <div className="glass-panel rounded-2xl p-7">
-          <p className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground">
+      <div className="grid gap-8 md:grid-cols-2 md:gap-12">
+        <div className="glass-panel rounded-2xl p-5 sm:p-7">
+          <p className="text-[10px] uppercase tracking-[0.35em] text-muted-foreground sm:tracking-[0.4em]">
             {t.about.practice}
           </p>
-          <p className="mt-4 text-sm font-light leading-relaxed text-foreground/85">
+          <p className="mt-4 text-pretty text-sm font-light leading-relaxed text-foreground/85 sm:text-[15px]">
             {t.about.practiceText}
           </p>
           <div className="mt-6 flex flex-wrap gap-1.5" dir="ltr">
             {stack.map((s) => (
               <span
                 key={s}
-                className="rounded-full px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-muted-foreground"
+                className="latin rounded-full px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-muted-foreground"
                 style={{
                   background: "color-mix(in oklab, white 4%, transparent)",
                   border: "1px solid color-mix(in oklab, white 6%, transparent)",
@@ -76,7 +76,7 @@ function AboutPage() {
         <ol className="relative">
           <span
             aria-hidden
-            className="absolute left-2 top-2 bottom-2 w-px"
+            className="absolute start-2 top-2 bottom-2 w-px"
             style={{
               background:
                 "linear-gradient(180deg, transparent, color-mix(in oklab, var(--plasma) 50%, transparent), transparent)",
@@ -85,20 +85,22 @@ function AboutPage() {
           {t.about.timeline.map((item, i) => (
             <li
               key={item.year}
-              className="relative pl-10 pb-8 last:pb-0"
+              className="relative ps-10 pb-7 last:pb-0"
               style={{ animation: `cinematic-fade 1s ease-out ${1.2 + i * 0.15}s both` }}
             >
               <span
-                className="absolute left-[2px] top-1.5 h-2 w-2 rounded-full"
+                className="absolute start-[2px] top-1.5 h-2 w-2 rounded-full"
                 style={{
                   background: "var(--plasma)",
                   boxShadow: "0 0 12px var(--plasma)",
                 }}
               />
-              <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">
+              <p className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
                 {item.year}
               </p>
-              <p className="mt-1.5 text-base font-light text-foreground/90">{item.text}</p>
+              <p className="mt-1.5 text-pretty text-[15px] font-light leading-relaxed text-foreground/90 sm:text-base">
+                {item.text}
+              </p>
             </li>
           ))}
         </ol>

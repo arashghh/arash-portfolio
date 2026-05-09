@@ -27,22 +27,22 @@ function Hero() {
 
   return (
     <main
-      className="relative z-10 h-screen w-screen overflow-hidden"
+      className="relative z-10 h-[100svh] w-full overflow-hidden"
       dir={isRtl ? "rtl" : "ltr"}
     >
       <SiteNav />
       <LiveCodeStream />
 
-      <section className="relative z-20 flex h-full flex-col items-center justify-center px-6 text-center">
+      <section className="relative z-20 flex h-full flex-col items-center justify-center px-5 pt-16 pb-10 text-center sm:px-6 sm:pt-0 sm:pb-0">
         <p
-          className="mb-5 text-[10px] uppercase tracking-[0.5em] text-muted-foreground sm:text-xs"
+          className="mb-4 text-[10px] uppercase tracking-[0.4em] text-muted-foreground sm:mb-5 sm:text-xs sm:tracking-[0.5em]"
           style={{ animation: "cinematic-fade 1.4s ease-out 1.6s both" }}
         >
           {t.hero.eyebrow}
         </p>
 
         <h1
-          className="text-cinematic text-5xl font-extralight leading-[1.02] tracking-tight text-foreground sm:text-6xl md:text-7xl lg:text-8xl"
+          className="text-cinematic text-balance text-[clamp(2.5rem,12vw,4rem)] font-extralight leading-[1.05] tracking-tight text-foreground sm:text-6xl md:text-7xl lg:text-8xl"
           style={{ animation: "cinematic-fade 1.6s ease-out 1.9s both" }}
         >
           {t.hero.firstName}{" "}
@@ -60,14 +60,14 @@ function Hero() {
         </h1>
 
         <p
-          className="mt-6 max-w-md text-balance text-sm font-light leading-relaxed text-muted-foreground sm:text-base"
+          className="mt-5 max-w-md text-pretty text-sm font-light leading-relaxed text-muted-foreground sm:mt-6 sm:text-base"
           style={{ animation: "cinematic-fade 1.6s ease-out 2.2s both" }}
         >
           {t.hero.tagline}
         </p>
 
         <div
-          className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:gap-4"
+          className="mt-8 flex w-full max-w-md flex-wrap items-center justify-center gap-2.5 sm:mt-10 sm:max-w-none sm:gap-4"
           style={{ animation: "cinematic-fade 1.6s ease-out 2.6s both" }}
         >
           <CTA to="/work" primary>{t.hero.work}</CTA>
@@ -77,7 +77,7 @@ function Hero() {
       </section>
 
       <div
-        className="absolute bottom-5 left-1/2 z-30 -translate-x-1/2 text-[10px] uppercase tracking-[0.4em] text-muted-foreground/60"
+        className="absolute inset-x-0 bottom-[max(env(safe-area-inset-bottom),0.75rem)] z-30 hidden text-center text-[10px] uppercase tracking-[0.4em] text-muted-foreground/60 sm:block"
         style={{ animation: "cinematic-fade 1.2s ease-out 3.2s both" }}
       >
         {t.hero.whisper}

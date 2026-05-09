@@ -50,14 +50,14 @@ function WorkPage() {
           <li key={p.title}>
             <Link
               to="/contact"
-              className="group flex flex-col gap-3 py-7 transition-colors hover:bg-[color:color-mix(in_oklab,var(--plasma)_4%,transparent)] sm:flex-row sm:items-baseline sm:gap-8 sm:px-2"
+              className="group flex flex-col gap-2 py-6 transition-colors hover:bg-[color:color-mix(in_oklab,var(--plasma)_4%,transparent)] sm:flex-row sm:items-baseline sm:gap-8 sm:px-2 sm:py-7"
             >
-              <span className="w-16 text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
+              <span className="shrink-0 text-[11px] uppercase tracking-[0.3em] text-muted-foreground sm:w-16">
                 {p.year}
               </span>
-              <div className="flex-1">
-                <div className="flex items-center gap-3">
-                  <h2 className="text-2xl font-light text-foreground sm:text-3xl">
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                  <h2 className="text-pretty text-xl font-light leading-snug text-foreground sm:text-2xl md:text-3xl">
                     {p.title}
                   </h2>
                   <span
@@ -71,14 +71,14 @@ function WorkPage() {
                     {p.tag}
                   </span>
                 </div>
-                <p className="mt-2 max-w-xl text-sm font-light text-muted-foreground">
+                <p className="mt-2 max-w-xl text-pretty text-sm font-light leading-relaxed text-muted-foreground">
                   {p.blurb}
                 </p>
               </div>
               <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.25em] text-muted-foreground sm:w-56 sm:justify-end">
-                <span>{p.role}</span>
+                <span className="truncate">{p.role}</span>
                 <ArrowUpRight
-                  className="h-4 w-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  className="h-4 w-4 shrink-0 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl:-scale-x-100"
                   style={{ color: "var(--plasma)" }}
                 />
               </div>
